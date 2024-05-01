@@ -19,7 +19,7 @@ export const BuscadorPeliculas = () => {
 
   const fetchPeliculas = async () => {
     try {
-        const response = await fetch(`${urlBase}?query=${busqueda}&api_key=${API_KEY}`)
+        const response = await fetch(`${urlBase}?query=${busqueda}&api_key=${API_KEY}&language=es-ES`)
         const data = await response.json()
         setpeliculas(data.results)
     }catch (error) {
@@ -41,7 +41,8 @@ export const BuscadorPeliculas = () => {
             {peliculas.map((pelicula) => (
                 <div key={pelicula.id} className="movie-card">
                     <img src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} alt={pelicula.title} />
-                    <h2>{pelicula.title}</h2>
+                    <h2 style={{ textAlign:"center" }}>{pelicula.title}</h2>
+                    <h2 style={{ textAlign:"center" }}>{pelicula.release_date}</h2>
                     <p>{pelicula.overview}</p>
                 </div>
             ))}
